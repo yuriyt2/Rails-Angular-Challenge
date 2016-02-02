@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
+  current_user
+  user_signed_in?
+  user_session
 
   # GET /users
   # GET /users.json
@@ -22,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
+  # POST /  users.json
   def create
     @user = User.new(user_params)
 
